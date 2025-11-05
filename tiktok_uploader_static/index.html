@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TikTok Uploader – Demo</title>
+  <meta name="description" content="Ein schlankes Frontend (Demo) zum Vorbereiten von TikTok-Uploads direkt vom Desktop. Keine Server‑Komponenten." />
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-badge"></span>
+        <span>TikTok Uploader</span>
+      </a>
+      <div style="display:flex;gap:6px">
+        <a class="link active" href="index.html">Home</a>
+        <a class="link" href="app.html">App</a>
+        <a class="link" href="legal.html">Rechtliches</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero container">
+    <div class="kicker">Öffentliche Demo · nur Frontend</div>
+    <h1 class="h-title">Clips vom Desktop zu <strong>TikTok</strong> – als Entwurf, nicht automatisch veröffentlicht.</h1>
+    <p class="h-sub">Diese Version zeigt den Workflow als reine statische Seite für GitHub Pages. Keine echten API‑Calls – ideal fürs Testen von UI & Handling.</p>
+    <div class="btn-row">
+      <a class="btn primary" href="app.html">Zur App</a>
+      <a class="btn ghost" href="https://github.com/juppeee/Tiktok-Uploader" target="_blank" rel="noreferrer">GitHub</a>
+    </div>
+
+    <div class="alert">
+      <strong>Hinweis:</strong> Das ist eine statische Demo ohne TikTok‑Posting. Sobald die API‑Freigabe da ist, kann eine private Instanz mit echter Posting‑Funktion angebunden werden.
+    </div>
+  </header>
+
+  <section class="section container">
+    <div class="grid">
+      <div class="card">
+        <div class="badge">⬆️ Upload</div>
+        <h3>Drag & Drop</h3>
+        <p>MP4/MOV einfach in die App ziehen oder auswählen. Metadaten (Caption/Hashtags) vorbereiten.</p>
+      </div>
+      <div class="card">
+        <div class="badge">⚙️ Steuerung</div>
+        <h3>Entwurf statt Auto‑Post</h3>
+        <p>Im Demo‑Modus werden keine Inhalte veröffentlicht – nur der Ablauf wird simuliert.</p>
+      </div>
+      <div class="card">
+        <div class="badge">🔒 Sicherheit</div>
+        <h3>Client‑seitig</h3>
+        <p>Reines Frontend ohne Server. Eignet sich für GitHub Pages / Static Hosting.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      © <span id="y"></span> · TikTok Uploader (Demo). <span class="small">Nicht mit TikTok verbunden.</span>
+    </div>
+  </footer>
+  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+</body>
+</html>
