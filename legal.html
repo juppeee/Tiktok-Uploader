@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Rechtliches · TikTok Uploader (Demo)</title>
+  <title>Rechtliches & Datenschutz · TikTok Uploader (Demo)</title>
   <link rel="icon" href="favicon.ico">
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -22,12 +22,106 @@
     </div>
   </nav>
 
-  <main class="container section">
-    <div class="card">
-      <h2>Rechtlicher Hinweis</h2>
-      <p class="small">Dies ist eine frei zugängliche, statische Demo‑Seite ohne Verbindung zu TikTok oder anderen Diensten. Es werden keine Cookies gesetzt, keine Daten übertragen und keine Inhalte veröffentlicht.</p>
-      <p class="small">Für eine produktive Nutzung (OAuth & Veröffentlichen) wird eine separate, private Instanz mit API‑Freigaben benötigt.</p>
-    </div>
+  <main class="container section" style="max-width:900px">
+    <article class="card">
+      <h1 style="margin-top:0">Rechtliches & Datenschutz</h1>
+
+      <h2>Impressum</h2>
+      <p class="small">
+        Betreiber: <em>[Ihr Name / Firmenname]</em><br>
+        <em>[Ihre Anschrift]</em><br>
+        <em>[PLZ Ort]</em>
+      </p>
+      <p class="small">
+        Kontakt: E‑Mail <a href="mailto:goht187@gmail.com">goht187@gmail.com</a>
+      </p>
+
+      <h3>Haftungsausschluss</h3>
+      <h4>Haftung für Inhalte</h4>
+      <p>Die Inhalte dieser Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit,
+      Vollständigkeit und Aktualität der Inhalte kann jedoch keine Gewähr übernommen werden.</p>
+
+      <h4>Haftung für Links</h4>
+      <p>Unser Angebot enthält Links zu externen Webseiten Dritter (insbesondere TikTok),
+      auf deren Inhalte wir keinen Einfluss haben. Für die Inhalte der verlinkten Seiten ist stets der jeweilige
+      Anbieter oder Betreiber verantwortlich.</p>
+
+      <h3>Urheberrecht</h3>
+      <p>Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen
+      Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen
+      des Urheberrechts bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
+    </article>
+
+    <article class="card" id="datenschutz" style="margin-top:16px">
+      <h2>Datenschutz</h2>
+      <p>Diese öffentliche Demo ist eine rein statische Client‑App ohne Server‑Komponenten.</p>
+
+      <h3>1. Verantwortlicher</h3>
+      <p>Verantwortlich für die Datenverarbeitung im Sinne der DSGVO ist der oben genannte Betreiber.</p>
+
+      <h3>2. Welche Daten werden verarbeitet?</h3>
+      <p><strong>Öffentliche Demo (diese Seite):</strong> Es werden keine personenbezogenen Daten
+      gespeichert oder an Dritte übertragen. Es findet kein Tracking statt.</p>
+      <p><strong>Private Instanz (nach API‑Freigabe):</strong> In einer produktiven, privaten Instanz können
+      folgende Daten verarbeitet werden:</p>
+      <ul>
+        <li>TikTok‑OAuth‑Tokens (verschlüsselt gespeichert)</li>
+        <li>Video‑Metadaten (Dateiname, Größe, Upload‑Status)</li>
+        <li>Technische Logs zu Debug‑Zwecken</li>
+      </ul>
+
+      <h3>3. Weitergabe von Daten</h3>
+      <p>Eine Weitergabe erfolgt ausschließlich an TikTok (nur in der privaten Instanz nach API‑Freigabe).
+      Es erfolgt keine Weitergabe an sonstige Dritte.</p>
+
+      <h3>4. Ihre Rechte</h3>
+      <p>Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer personenbezogenen Daten.
+      Wenden Sie sich hierzu an <a href="mailto:goht187@gmail.com">goht187@gmail.com</a>.</p>
+
+      <h3>5. Cookies und lokale Speicherung</h3>
+      <p>Diese Demo nutzt ggf. <code>localStorage</code> für Einstellungen/Session‑Daten. Es werden keine
+      Tracking‑Cookies von Dritten eingesetzt.</p>
+    </article>
+
+    <article class="card" id="nutzungsbedingungen" style="margin-top:16px">
+      <h2>Nutzungsbedingungen</h2>
+      <ul>
+        <li>Die Demo dient ausschließlich zu Test‑ und Demonstrationszwecken. Es werden keine Inhalte zu TikTok hochgeladen.</li>
+        <li>Nutzung auf eigene Verantwortung. Für Datenverlust oder Schäden wird keine Haftung übernommen.</li>
+        <li>Inhalte müssen den geltenden Gesetzen und den Richtlinien von TikTok entsprechen.</li>
+      </ul>
+
+      <h3>APIs & Richtlinien</h3>
+      <ul>
+        <li><a href="https://developers.tiktok.com/doc/getting-started-terms-of-service" target="_blank" rel="noopener noreferrer">TikTok Developer Terms</a></li>
+        <li><a href="https://www.tiktok.com/community-guidelines" target="_blank" rel="noopener noreferrer">TikTok Community Guidelines</a></li>
+        <li><a href="https://www.tiktok.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">TikTok Privacy Policy</a></li>
+      </ul>
+    </article>
+
+    <article class="card" id="oss" style="margin-top:16px">
+      <h2>Open Source & Lizenzen</h2>
+      <p>Diese Anwendung nutzt u. a. folgende Open‑Source‑Projekte:</p>
+      <ul>
+        <li><strong>React</strong> – MIT License</li>
+        <li><strong>TypeScript</strong> – Apache License 2.0</li>
+        <li><strong>Tailwind CSS</strong> – MIT License</li>
+        <li><strong>shadcn/ui</strong> – MIT License</li>
+        <li><strong>Lucide Icons</strong> – ISC License</li>
+      </ul>
+      <p>Vollständige Lizenztexte siehe jeweilige Projekt‑Repos.</p>
+    </article>
+
+    <article class="card" id="kontakt" style="margin-top:16px">
+      <h2>Kontakt & Support</h2>
+      <p>Für Fragen, Feature‑Requests oder Meldungen von Problemen:
+        <br>E‑Mail: <a href="mailto:goht187@gmail.com">goht187@gmail.com</a>
+      </p>
+      <div class="alert">
+        Hinweis: Diese Demo führt keine echten Uploads aus. Für eine produktive Nutzung ist eine
+        private Instanz mit API‑Freigabe notwendig.
+      </div>
+    </article>
   </main>
 
   <footer class="footer">
