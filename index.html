@@ -63,5 +63,40 @@
     </div>
   </footer>
   <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+
+  <!-- TikTok OAuth Code-Anzeige: zeigt den Code, wenn TikTok mit ?code=... zurückleitet -->
+  <script>
+  (function () {
+    var params = new URLSearchParams(window.location.search);
+    var code = params.get('code');
+    if (!code) return;
+
+    var overlay = document.createElement('div');
+    overlay.style.cssText =
+      'position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.82);' +
+      'display:flex;align-items:center;justify-content:center;' +
+      'font-family:system-ui,-apple-system,Segoe UI,sans-serif;';
+    overlay.innerHTML =
+      '<div style="background:#18181b;color:#efeff1;border:1px solid #2d2d35;' +
+      'border-radius:14px;padding:32px;max-width:560px;width:90%;text-align:center;' +
+      'box-shadow:0 14px 44px rgba(0,0,0,.6);">' +
+        '<h2 style="margin:0 0 8px;font-size:20px;">TikTok-Autorisierungs-Code</h2>' +
+        '<p style="margin:0 0 16px;color:#adadb8;font-size:14px;">' +
+          'Kopiere diesen Code und füge ihn im Clip-Manager (TikTok-Tab) ein:</p>' +
+        '<div id="ttCode" style="font-family:monospace;font-size:15px;word-break:break-all;' +
+          'background:#0e0e10;border:1px solid #2d2d35;border-radius:8px;padding:14px;margin-bottom:18px;"></div>' +
+        '<button id="ttCopy" style="background:#9147ff;color:#fff;border:none;border-radius:8px;' +
+          'padding:11px 22px;font-size:14px;font-weight:600;cursor:pointer;">Code kopieren</button>' +
+        '<div id="ttStatus" style="color:#adadb8;font-size:13px;margin-top:12px;"></div>' +
+      '</div>';
+    document.body.appendChild(overlay);
+    document.getElementById('ttCode').textContent = code;
+    document.getElementById('ttCopy').addEventListener('click', function () {
+      navigator.clipboard.writeText(code).then(function () {
+        document.getElementById('ttStatus').textContent = 'Kopiert! Jetzt im Clip-Manager einfügen.';
+      });
+    });
+  })();
+  </script>
 </body>
 </html>
