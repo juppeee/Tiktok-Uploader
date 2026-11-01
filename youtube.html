@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="referrer" content="no-referrer" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'none'; form-action 'none'; base-uri 'none'; frame-ancestors 'none'" />
+  <title>YouTube Uploader – OAuth Redirect</title>
+  <meta name="description" content="OAuth-Redirect-Ziel fuer die lokale YouTube-Shorts-Uploader-App. Keine Server-Komponenten, keine Datenverarbeitung." />
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-badge"></span>
+        <span>TikTok Uploader</span>
+      </a>
+      <div style="display:flex;gap:6px">
+        <a class="link" href="index.html">Home</a>
+        <a class="link" href="app.html">App</a>
+        <a class="link" href="legal.html">Rechtliches</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero container">
+    <div class="kicker">OAuth-Redirect · nur Frontend</div>
+    <h1 class="h-title">YouTube-Shorts-Uploader – <strong>Autorisierungs-Rueckleitung</strong></h1>
+    <p class="h-sub">Diese Seite empfaengt den OAuth-Code von Google nach erfolgreicher Freigabe. Keine Server-Logik, kein API-Call von hier.</p>
+
+    <div class="alert">
+      <strong>Hinweis:</strong> Diese Seite tut nichts, wenn du sie direkt besuchst. Sie wird nach dem Google-Login automatisch mit einem Code aufgerufen.
+    </div>
+  </header>
+
+  <footer class="footer">
+    <div class="container">
+      © <span id="y"></span> · YouTube-Shorts-Uploader (Demo). <span class="small">Nicht mit YouTube/Google verbunden.</span>
+    </div>
+  </footer>
+  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+
+  <!-- Google OAuth Code-Anzeige: zeigt den Code wenn Google mit ?code=... zurueckleitet -->
+  <script>
+  (function () {
+    var params = new URLSearchParams(window.location.search);
+    var code = params.get('code');
+    var state = params.get('state') || '';
+    var err = params.get('error');
+    if (!code && !err) return;
+
+    // Code SOFORT aus URL-Bar entfernen — verhindert Leaks via History/Screenshots/Referer.
+    try { history.replaceState(null, '', window.location.pathname); } catch (e) {}
+
+    var overlay = document.createElement('div');
+    overlay.style.cssText =
+      'position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.82);' +
+      'display:flex;align-items:center;justify-content:center;' +
+      'font-family:system-ui,-apple-system,Segoe UI,sans-serif;';
+
+    if (err) {
+      overlay.innerHTML =
+        '<div style="background:#18181b;color:#efeff1;border:1px solid #2d2d35;' +
+        'border-radius:14px;padding:32px;max-width:560px;width:90%;text-align:center;' +
+        'box-shadow:0 14px 44px rgba(0,0,0,.6);">' +
+          '<h2 style="margin:0 0 8px;font-size:20px;color:#ff5a5a;">Google-OAuth-Fehler</h2>' +
+          '<div style="font-family:monospace;font-size:14px;background:#0e0e10;' +
+            'border:1px solid #2d2d35;border-radius:8px;padding:14px;margin-bottom:12px;">' +
+            err + '</div>' +
+          '<p style="margin:0;color:#adadb8;font-size:13px;">Zurueck in den Clip-Manager und erneut versuchen.</p>' +
+        '</div>';
+      document.body.appendChild(overlay);
+      return;
+    }
+
+    overlay.innerHTML =
+      '<div style="background:#18181b;color:#efeff1;border:1px solid #2d2d35;' +
+      'border-radius:14px;padding:32px;max-width:560px;width:90%;text-align:center;' +
+      'box-shadow:0 14px 44px rgba(0,0,0,.6);">' +
+        '<h2 style="margin:0 0 8px;font-size:20px;">YouTube-Autorisierungs-Code</h2>' +
+        '<p style="margin:0 0 16px;color:#adadb8;font-size:14px;">' +
+          'Kopiere diesen Code und fuege ihn im Clip-Manager (Settings-Tab, YouTube-Block) ein:</p>' +
+        '<div id="ytCode" style="font-family:monospace;font-size:14px;word-break:break-all;' +
+          'background:#0e0e10;border:1px solid #2d2d35;border-radius:8px;padding:14px;margin-bottom:8px;"></div>' +
+        '<div id="ytStateRow" style="font-family:monospace;font-size:12px;color:#adadb8;word-break:break-all;margin-bottom:18px;"></div>' +
+        '<button id="ytCopy" style="background:#ff0000;color:#fff;border:none;border-radius:8px;' +
+          'padding:11px 22px;font-size:14px;font-weight:600;cursor:pointer;">Code kopieren</button>' +
+        '<div id="ytStatus" style="color:#adadb8;font-size:13px;margin-top:12px;"></div>' +
+      '</div>';
+    document.body.appendChild(overlay);
+    document.getElementById('ytCode').textContent = code;
+    if (state) {
+      document.getElementById('ytStateRow').textContent = 'state: ' + state;
+    }
+    document.getElementById('ytCopy').addEventListener('click', function () {
+      navigator.clipboard.writeText(code).then(function () {
+        document.getElementById('ytStatus').textContent = 'Kopiert! Jetzt im Clip-Manager einfuegen.';
+      });
+    });
+  })();
+  </script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Rechtliches & Datenschutz · TikTok Uploader (Demo)</title>
+  <title>Rechtliches & Datenschutz · TikTok & YouTube Uploader (Demo)</title>
   <link rel="icon" href="favicon.ico">
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -65,14 +65,35 @@
       <p><strong>Private Instanz (nach API‑Freigabe):</strong> In einer produktiven, privaten Instanz können
       folgende Daten verarbeitet werden:</p>
       <ul>
-        <li>TikTok‑OAuth‑Tokens (verschlüsselt gespeichert)</li>
-        <li>Video‑Metadaten (Dateiname, Größe, Upload‑Status)</li>
-        <li>Technische Logs zu Debug‑Zwecken</li>
+        <li>TikTok‑OAuth‑Tokens (chmod 600 lokal gespeichert, Zugriff nur durch den Betreiber)</li>
+        <li>YouTube/Google OAuth‑Tokens (<code>access_token</code>, <code>refresh_token</code>,
+          <code>expires_at</code>, verschlüsselter Dateizugriff chmod 600 auf dem lokalen Server)</li>
+        <li>YouTube Channel‑Metadaten des eigenen Kanals (<code>channel_name</code>,
+          <code>channel_id</code>, <code>subscriber_count</code>, <code>video_count</code>) —
+          ausschließlich zur Anzeige in der eigenen Verwaltungs‑UI</li>
+        <li>Video‑Metadaten (Dateiname, Größe, Upload‑Status, YouTube Video‑ID nach Upload)</li>
+        <li>Technische Logs zu Debug‑Zwecken (lokal, nicht übertragen)</li>
       </ul>
+      <p>Es werden <strong>keine Daten anderer YouTube‑Nutzer*innen</strong> abgerufen, gespeichert oder
+      verarbeitet. Der Zugriff beschränkt sich auf den eigenen autorisierten YouTube‑Kanal des Betreibers.</p>
 
       <h3>3. Weitergabe von Daten</h3>
-      <p>Eine Weitergabe erfolgt ausschließlich an TikTok (nur in der privaten Instanz nach API‑Freigabe).
-      Es erfolgt keine Weitergabe an sonstige Dritte.</p>
+      <p>Eine Weitergabe erfolgt ausschließlich an TikTok (TikTok Content Posting API) und YouTube/Google
+      (YouTube Data API v3), ausschließlich zum Zweck des Hochladens eigener Videos auf die eigenen Kanäle
+      des Betreibers. Es erfolgt keine Weitergabe an sonstige Dritte.</p>
+
+      <h3>3a. Datenspeicherung und Löschung (YouTube/Google‑Daten)</h3>
+      <p>Alle gespeicherten Google/YouTube‑Daten können jederzeit über die „Trennen“‑Funktion in der App
+      vollständig gelöscht werden. Dabei wird:</p>
+      <ul>
+        <li>der lokal gespeicherte Refresh‑Token über
+          <code>https://oauth2.googleapis.com/revoke</code> bei Google zurückgezogen,</li>
+        <li>die Token‑Datei (<code>youtube_tokens.json</code>) vom Server entfernt,</li>
+        <li>die lokale Upload‑Historie des Betreibers bleibt lokal und wird nicht an Dritte übertragen.</li>
+      </ul>
+      <p>Zusätzlich können Nutzer*innen jederzeit über
+      <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer">
+      Google‑Konto → Sicherheit → Drittanbieter‑Zugriff</a> den Zugriff dieser App widerrufen.</p>
 
       <h3>4. Ihre Rechte</h3>
       <p>Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer personenbezogenen Daten.
@@ -92,10 +113,71 @@
       </ul>
 
       <h3>APIs & Richtlinien</h3>
+      <h4>TikTok</h4>
       <ul>
         <li><a href="https://developers.tiktok.com/doc/getting-started-terms-of-service" target="_blank" rel="noopener noreferrer">TikTok Developer Terms</a></li>
         <li><a href="https://www.tiktok.com/community-guidelines" target="_blank" rel="noopener noreferrer">TikTok Community Guidelines</a></li>
         <li><a href="https://www.tiktok.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">TikTok Privacy Policy</a></li>
+      </ul>
+      <h4>YouTube / Google</h4>
+      <p>Diese Anwendung nutzt <strong>YouTube API Services</strong>. Mit der Nutzung erklärst du
+      dich mit den folgenden YouTube‑ und Google‑Nutzungsbedingungen einverstanden:</p>
+      <ul>
+        <li><a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener noreferrer">YouTube Terms of Service</a></li>
+        <li><a href="https://developers.google.com/youtube/terms/developer-policies" target="_blank" rel="noopener noreferrer">YouTube API Services Developer Policies</a></li>
+        <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a></li>
+        <li><a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Google Terms of Service</a></li>
+      </ul>
+    </article>
+
+    <article class="card" id="youtube-api" style="margin-top:16px">
+      <h2>YouTube API Services — Nutzung in dieser Anwendung</h2>
+      <p>Diese Anwendung nutzt die <strong>YouTube Data API v3</strong>
+      (<a href="https://developers.google.com/youtube/v3" target="_blank" rel="noopener noreferrer">Dokumentation</a>)
+      ausschließlich zum automatisierten Hochladen eigener kurzer Video‑Clips des Betreibers auf
+      seinen eigenen YouTube‑Kanal (YouTube Shorts).</p>
+
+      <h3>Verwendete API‑Endpoints</h3>
+      <ul>
+        <li><code>videos.insert</code> (resumable upload) — zum Hochladen eigener Clips</li>
+        <li><code>channels.list</code> (<code>mine=true</code>) — zur Anzeige des eigenen Kanal‑Namens
+          und Avatars in der Verwaltungs‑UI nach OAuth‑Autorisierung</li>
+      </ul>
+
+      <h3>Verwendete OAuth‑Scopes</h3>
+      <ul>
+        <li><code>https://www.googleapis.com/auth/youtube.upload</code> — Hochladen eigener Videos</li>
+        <li><code>https://www.googleapis.com/auth/youtube.readonly</code> — Lesen des eigenen Kanal‑Namens
+          für die Statusanzeige</li>
+      </ul>
+
+      <h3>Was NICHT gemacht wird</h3>
+      <ul>
+        <li>❌ Kein Zugriff auf andere YouTube‑Nutzer*innen‑Daten oder deren Inhalte</li>
+        <li>❌ Keine Weitergabe von YouTube‑Daten an Dritte</li>
+        <li>❌ Kein Scraping oder Aggregieren fremder Videos / Analytics</li>
+        <li>❌ Keine kommerzielle Verbreitung dieser Anwendung an Endnutzer*innen</li>
+      </ul>
+
+      <h3>Widerruf des Zugriffs</h3>
+      <p>Du kannst der App jederzeit den Zugriff auf dein YouTube‑Konto entziehen:</p>
+      <ol>
+        <li>In der App: Einstellungen → YouTube Shorts → „Trennen“ (ruft Google‑Revoke auf)</li>
+        <li>Direkt bei Google:
+          <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer">
+          https://myaccount.google.com/permissions</a> → App auswählen → Zugriff entfernen</li>
+      </ol>
+
+      <h3>YouTube‑Compliance‑Hinweise</h3>
+      <p>In Übereinstimmung mit den
+      <a href="https://developers.google.com/youtube/terms/developer-policies" target="_blank" rel="noopener noreferrer">YouTube
+      API Services Developer Policies</a>:</p>
+      <ul>
+        <li>Alle hochgeladenen Videos müssen den
+          <a href="https://www.youtube.com/t/community_guidelines" target="_blank" rel="noopener noreferrer">YouTube Community
+          Guidelines</a> entsprechen.</li>
+        <li>Die hochladende Person ist Urheber*in bzw. Rechteinhaber*in der hochgeladenen Clips.</li>
+        <li>Die App speichert, verarbeitet oder sendet keine Daten anderer YouTube‑Nutzer*innen.</li>
       </ul>
     </article>
 
@@ -126,7 +208,7 @@
 
   <footer class="footer">
     <div class="container">
-      © <span id="y"></span> · TikTok Uploader (Demo).
+      © <span id="y"></span> · TikTok & YouTube Uploader (Demo). <span class="small">Nicht mit TikTok, YouTube oder Google verbunden.</span>
     </div>
   </footer>
   <script>document.getElementById('y').textContent=new Date().getFullYear()</script>

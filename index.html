@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TikTok Uploader – Demo</title>
-  <meta name="description" content="Ein schlankes Frontend (Demo) zum Vorbereiten von TikTok-Uploads direkt vom Desktop. Keine Server‑Komponenten." />
+  <title>TikTok & YouTube Shorts Uploader – Demo</title>
+  <meta name="description" content="Ein schlankes Frontend (Demo) zum Vorbereiten von TikTok- und YouTube-Shorts-Uploads direkt vom Desktop. Keine Server‑Komponenten." />
   <link rel="icon" href="favicon.ico">
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -25,7 +25,7 @@
 
   <header class="hero container">
     <div class="kicker">Öffentliche Demo · nur Frontend</div>
-    <h1 class="h-title">Clips vom Desktop zu <strong>TikTok</strong> – als Entwurf, nicht automatisch veröffentlicht.</h1>
+    <h1 class="h-title">Clips vom Desktop zu <strong>TikTok</strong> und <strong>YouTube&nbsp;Shorts</strong> – als Entwurf, nicht automatisch veröffentlicht.</h1>
     <p class="h-sub">Diese Version zeigt den Workflow als reine statische Seite für GitHub Pages. Keine echten API‑Calls – ideal fürs Testen von UI & Handling.</p>
     <div class="btn-row">
       <a class="btn primary" href="app.html">Zur App</a>
@@ -33,7 +33,7 @@
     </div>
 
     <div class="alert">
-      <strong>Hinweis:</strong> Das ist eine statische Demo ohne TikTok‑Posting. Sobald die API‑Freigabe da ist, kann eine private Instanz mit echter Posting‑Funktion angebunden werden.
+      <strong>Hinweis:</strong> Das ist eine statische Demo ohne TikTok‑ oder YouTube‑Posting. Sobald die API‑Freigaben da sind, kann eine private Instanz mit echter Posting‑Funktion angebunden werden.
     </div>
   </header>
 
@@ -54,6 +54,43 @@
         <h3>Client‑seitig</h3>
         <p>Reines Frontend ohne Server. Eignet sich für GitHub Pages / Static Hosting.</p>
       </div>
+    </div>
+  </section>
+
+  <section class="section container">
+    <div class="card" style="padding:28px;">
+      <div class="kicker" style="margin-bottom:10px;">Unterstützte Plattformen</div>
+      <h2 style="margin:0 0 14px;">Zwei Zielplattformen, ein Workflow</h2>
+      <div class="grid" style="margin-top:16px;">
+        <div class="card">
+          <div class="badge" style="background:#010101;color:#fff;">🎵 TikTok</div>
+          <h3>TikTok Content Posting API</h3>
+          <p>Clips werden via offizieller TikTok Content Posting API hochgeladen —
+          entweder als Draft in den TikTok‑Posteingang oder als Direct Post.
+          OAuth 2.0, Scope <code>video.upload</code> + <code>video.publish</code>.</p>
+          <p class="small">
+            <a href="https://www.tiktok.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">TikTok Privacy</a> ·
+            <a href="https://developers.tiktok.com/doc/getting-started-terms-of-service" target="_blank" rel="noopener noreferrer">TikTok Developer Terms</a>
+          </p>
+        </div>
+        <div class="card">
+          <div class="badge" style="background:#ff0000;color:#fff;">▶️ YouTube Shorts</div>
+          <h3>YouTube Data API v3</h3>
+          <p>Dieselben vertikalen Clips werden parallel auf den <strong>eigenen YouTube‑Kanal</strong>
+          als Short gemirrort — via <code>videos.insert</code> (resumable upload).
+          OAuth 2.0, Scopes <code>youtube.upload</code> + <code>youtube.readonly</code>.
+          Zugriff ausschließlich auf den eigenen autorisierten Kanal des Betreibers.</p>
+          <p class="small">
+            <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener noreferrer">YouTube Terms</a> ·
+            <a href="https://developers.google.com/youtube/terms/developer-policies" target="_blank" rel="noopener noreferrer">YouTube API Developer Policies</a> ·
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>
+          </p>
+        </div>
+      </div>
+      <p class="small" style="margin-top:16px;">
+        Alle Datenverarbeitungs‑Details und die Widerrufs‑Möglichkeiten (Google OAuth Revoke, Trennen‑Button)
+        in der <a href="legal.html#youtube-api">Datenschutzerklärung</a>.
+      </p>
     </div>
   </section>
 
