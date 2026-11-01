@@ -24,16 +24,16 @@
   </nav>
 
   <header class="hero container">
-    <div class="kicker">Öffentliche Demo · nur Frontend</div>
-    <h1 class="h-title">Clips vom Desktop zu <strong>TikTok</strong> und <strong>YouTube&nbsp;Shorts</strong> – als Entwurf, nicht automatisch veröffentlicht.</h1>
-    <p class="h-sub">Diese Version zeigt den Workflow als reine statische Seite für GitHub Pages. Keine echten API‑Calls – ideal fürs Testen von UI & Handling.</p>
+    <div class="kicker">Private Instanz · OAuth 2.0 · Single‑Creator</div>
+    <h1 class="h-title">Eigene Clips automatisch zu <strong>TikTok</strong> und <strong>YouTube&nbsp;Shorts</strong> posten.</h1>
+    <p class="h-sub">Self‑hosted Tool des Betreibers für den eigenen Kanal: eigene Twitch‑Clips werden lokal zu 9:16 konvertiert und über die offiziellen APIs (OAuth 2.0) auf den eigenen TikTok‑Account und YouTube‑Shorts‑Kanal gespiegelt. Zugriff ausschließlich auf das eigene autorisierte Konto.</p>
     <div class="btn-row">
       <a class="btn primary" href="app.html">Zur App</a>
       <a class="btn ghost" href="https://github.com/juppeee/Tiktok-Uploader" target="_blank" rel="noreferrer">GitHub</a>
     </div>
 
     <div class="alert">
-      <strong>Hinweis:</strong> Das ist eine statische Demo ohne TikTok‑ oder YouTube‑Posting. Sobald die API‑Freigaben da sind, kann eine private Instanz mit echter Posting‑Funktion angebunden werden.
+      <strong>Nicht öffentlich zugänglich:</strong> Diese App ist ein privat gehostetes Single‑User‑Tool des Betreibers (nicht öffentlich installierbar). Diese GitHub‑Pages‑Seite dient ausschließlich als OAuth‑Redirect‑Ziel und zur Dokumentation von Datenschutz, API‑Scopes und Widerrufsrechten.
     </div>
   </header>
 
@@ -41,18 +41,18 @@
     <div class="grid">
       <div class="card">
         <div class="badge">⬆️ Upload</div>
-        <h3>Drag & Drop</h3>
-        <p>MP4/MOV einfach in die App ziehen oder auswählen. Metadaten (Caption/Hashtags) vorbereiten.</p>
+        <h3>Automatischer Upload</h3>
+        <p>Eigene Twitch‑Clips werden automatisch heruntergeladen, zu 9:16 konvertiert und über die offiziellen APIs hochgeladen. Caption + Hashtags aus Clip‑Metadaten.</p>
       </div>
       <div class="card">
         <div class="badge">⚙️ Steuerung</div>
-        <h3>Entwurf statt Auto‑Post</h3>
-        <p>Im Demo‑Modus werden keine Inhalte veröffentlicht – nur der Ablauf wird simuliert.</p>
+        <h3>User‑kontrollierte Veröffentlichung</h3>
+        <p>Uploads durchlaufen den UX‑konformen Flow der jeweiligen Plattform (Privacy‑Selector, Caption‑Vorschau, Consent‑Declaration). Der Betreiber reviewt jeden Clip im jeweiligen Studio bevor er öffentlich geht.</p>
       </div>
       <div class="card">
         <div class="badge">🔒 Sicherheit</div>
-        <h3>Client‑seitig</h3>
-        <p>Reines Frontend ohne Server. Eignet sich für GitHub Pages / Static Hosting.</p>
+        <h3>Nur eigenes Konto</h3>
+        <p>OAuth 2.0 mit minimalen Scopes. Zugriff ausschließlich auf das autorisierte Konto des Betreibers. Keine Fremddaten, keine Weitergabe, Widerruf jederzeit möglich.</p>
       </div>
     </div>
   </section>
